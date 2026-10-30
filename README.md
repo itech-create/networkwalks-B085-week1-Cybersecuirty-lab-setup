@@ -69,7 +69,7 @@ Additional target machines can be added to the same virtual network in future pr
 | 🐧 Kali IP Address | 10.0.0.2/24        |
 | 🚪 Default Gateway | 10.0.0.1           |
 | 🌍 DNS Server      | 8.8.8.8            |
-| 🔮 Future VM Range | 10.0.0.3–10.0.0.99 |
+| 🔮 Future VM Range | 10.0.0.1–10.0.0.254 |
 
 ---
 
@@ -167,6 +167,8 @@ VBoxManage natnetwork start --netname CustomNAT
 VBoxManage list natnetworks
 ```
 
+<img width="1366" height="691" alt="VirtualBox_kali-linux-2026 1-virtualbox-amd64_11_08_2026_00_06_50" src="VERIFY NETWORK.PNG" />
+
 **4. Verify the network inside your VM**
 
 Start the VM and check its assigned IP address.
@@ -248,6 +250,8 @@ ip -br addr
 ip route
 ```
 
+<img width="1366" height="691" alt="VirtualBox_kali-linux-2026 1-virtualbox-amd64_11_08_2026_00_06_50" src="VERIFY CONFIG.PNG" />
+
 You should see 10.0.0.2/24 on your active interface and a default route through 10.0.0.1.
 
 Test connectivity:
@@ -257,6 +261,8 @@ ping -c 4 10.0.0.1
 ping -c 4 1.1.1.1
 ping -c 4 google.com
 ```
+
+<img width="1366" height="691" alt="VirtualBox_kali-linux-2026 1-virtualbox-amd64_11_08_2026_00_06_50" src="Test connect.PNG" />
 
 The results help distinguish a gateway issue, an internet connectivity issue, or a DNS issue.
 
