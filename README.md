@@ -131,10 +131,10 @@ The VM was allocated:
 ```text
 RAM: 4096 MB
 ```
-<img width="1366" height="691" alt="VirtualBox_kali-linux-2026 1-virtualbox-amd64_11_08_2026_00_06_50" src=configure VM to use NAT adapter.PNG"/>
+<img width="1366" height="691" alt="VirtualBox_kali-linux-2026 1-virtualbox-amd64_11_08_2026_00_06_50" src=configure VM to use NAT adapter.PNG" />
 
 A shared folder was also configured for transferring required files between the host operating system and the Kali VM.
 
-<img width="1366" height="691" alt="VirtualBox_kali-linux-2026 1-virtualbox-amd64_11_08_2026_00_06_50" src=enable both features.PNG"/>
+<img width="1366" height="691" alt="VirtualBox_kali-linux-2026 1-virtualbox-amd64_11_08_2026_00_06_50" src=enable both features.PNG" />
 
 ---
