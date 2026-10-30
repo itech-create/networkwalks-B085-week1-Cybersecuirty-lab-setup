@@ -192,11 +192,15 @@ Test internet connectivity:
 ping 8.8.8.8
 ```
 
+<img width="1366" height="691" alt="VirtualBox_kali-linux-2026 1-virtualbox-amd64_11_08_2026_00_06_50" src="test internet connectivity.PNG" />
+
 Then test DNS resolution:
 
 ```text
 ping google.com
 ```
+<img width="1366" height="691" alt="VirtualBox_kali-linux-2026 1-virtualbox-amd64_11_08_2026_00_06_50" src="test dns resolution.PNG" />
+
 
 If the first test works but the second fails, check the VM's DNS configuration.
 
@@ -210,7 +214,51 @@ First, list your network connections:
 nmcli connection show
 ```
 
-A consistent IP address makes it easier to document the lab and reference the Kali machine in future exercises.
+<img width="1366" height="691" alt="VirtualBox_kali-linux-2026 1-virtualbox-amd64_11_08_2026_00_06_50" src="NETWORK CONNECTIONS'.PNG" />
 
-<img width="1366" height="691" alt="VirtualBox_kali-linux-2026 1-virtualbox-amd64_11_08_2026_00_42_50" src="https://github.com/user-attachments/assets/045ee1aa-9c4f-49f5-890b-f259752d235c" />
+Identify the connection associated with your active network interface. For example, the connection might be named **Wired connection 1**.
+
+Set the static IP:
+
+
+```text
+sudo nmcli connection modify "Wired connection 1" \
+  ipv4.method manual \
+  ipv4.addresses 10.0.0.2/24 \
+  ipv4.gateway 10.0.0.1 \
+  ipv4.dns "1.1.1.1 8.8.8.8"
+```
+
+Replace Wired connection 1 with your actual connection name.
+
+Apply the configuration:
+
+```text
+sudo nmcli connection up "Wired connection 1"
+```
+
+Your network connection might briefly disconnect while the settings apply.
+
+**6. Verify the configuration**
+
+Run:
+
+```text
+ip -br addr
+ip route
+```
+
+You should see 10.0.0.2/24 on your active interface and a default route through 10.0.0.1.
+
+Test connectivity:
+
+```text
+ping -c 4 10.0.0.1
+ping -c 4 1.1.1.1
+ping -c 4 google.com
+```
+
+The results help distinguish a gateway issue, an internet connectivity issue, or a DNS issue.
+
+If you want to configure a static IP for a lab with multiple Kali or Linux VMs, assign each VM a different unused address within **10.0.0.0/24**.
 
