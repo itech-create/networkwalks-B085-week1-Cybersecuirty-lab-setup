@@ -17,7 +17,7 @@
   <img src="https://img.shields.io/badge/Kali%20Linux-404040?style=flat-square&labelColor=C00000&logo=kalilinux&logoColor=white" />
   <img src="https://img.shields.io/badge/NetworkWalks-404040?style=flat-square&labelColor=C00000" />
   <img src="https://img.shields.io/badge/Ethical%20Hacking-E87500?style=flat-square&labelColor=000000&logo=kalilinux&logoColor=white" />
- <img src="https://img.shields.io/badge/Ogunleye%20Oluwasemilore%20Samuel-C00000?style=flat-square" />
+ <img src="https://img.shields.io/badge/Ogunleye%20Oluwasemilore-C00000?style=flat-square" />
 </p>
 
 ---
@@ -138,3 +138,79 @@ A shared folder was also configured for transferring required files between the 
 <img width="1366" height="691" alt="VirtualBox_kali-linux-2026 1-virtualbox-amd64_11_08_2026_00_06_50" src="enable both features.PNG" />
 
 ---
+
+## Step 5. Configure the Kali Linux Network
+
+You also have the option to create and start the network with **VBoxManage**.
+
+Open terminal on Linux/macOS.
+
+**1. Create the network:**
+
+```text
+VBoxManage natnetwork add \
+  --netname CustomNAT \
+  --network "10.0.0.0/24" \
+  --enable \
+  --dhcp on
+```
+
+**2. Start the NAT Network service:**
+
+```text
+VBoxManage natnetwork start --netname CustomNAT
+```
+
+**3. Check the configuration:**
+
+```text
+VBoxManage list natnetworks
+```
+
+**4. Verify the network inside your VM**
+
+Start the VM and check its assigned IP address.
+
+For Linux:
+
+```text
+ip addr
+ip route
+```
+
+For Windows:
+
+```text
+ipconfig
+```
+
+With DHCP enabled, your VM should receive an address in the **10.0.0.x** subnet, along with a gateway and DNS configuration. The exact gateway and DHCP range depend on the VirtualBox configuration.
+
+Test internet connectivity:
+
+```text
+ping 8.8.8.8
+```
+
+Then test DNS resolution:
+
+```text
+ping google.com
+```
+
+If the first test works but the second fails, check the VM's DNS configuration.
+
+**5. Configure the static IP in Kali:**
+
+The following method uses NetworkManager, which is common on Kali Linux.
+
+First, list your network connections:
+
+```text
+nmcli connection show
+```
+
+A consistent IP address makes it easier to document the lab and reference the Kali machine in future exercises.
+
+<img width="1366" height="691" alt="VirtualBox_kali-linux-2026 1-virtualbox-amd64_11_08_2026_00_42_50" src="https://github.com/user-attachments/assets/045ee1aa-9c4f-49f5-890b-f259752d235c" />
+
