@@ -93,6 +93,7 @@ VirtualBox was installed as the hypervisor.
 A dedicated NAT Network was created in VirtualBox.
 
 Configuration:
+
 Network Name: NatNetwork
 
 IPv4 Prefix: 10.0.0.0/24
@@ -109,5 +110,5 @@ A **NAT Network** was selected because multiple virtual machines connected to th
 
 This will allow future attacker and target VMs to communicate within the lab.
 
-
 ---
+
